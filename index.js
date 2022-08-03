@@ -137,15 +137,28 @@ function findByName(pokemon, id) {
  *  //> []
  */
 function filterByType(pokemon, genre) {
-  let pokeArr = [];
-  pokeArr = pokemon.filter((poke) => {
+  return pokemon.filter((poke) => {
     return poke.types.find(
       (el) => el.type.name.toUpperCase() === genre.toUpperCase()
     );
   });
-  return pokeArr;
   //reduce version
+  // return pokemon.reduce((acc, el) => {
+  //   let val = el.types.reduce((acc2, el2) =>{
+  //     if(el2.type.name.toUpperCase() === genre.toUpperCase()) {
+  //       acc2 = el
+  //       return acc2
+  //     }
+  //   }, undefined)
+  //   //console.log(`val: `, val)
+  //   if(val !== undefined){
+  //         acc.push(val);
+  //   }
+  //   //console.log(`acc: `, acc)
+  //   return acc
+  // }, []);
 }
+//console.log(filterByType(pokemon, `water`));
 
 /**
  * checkMinBaseExperience()
@@ -162,8 +175,8 @@ function filterByType(pokemon, genre) {
  *  //>  false
  */
 
- function checkMinBaseExperience(pokemon, baseExperience) {
-  return pokemon.every((el) => el.base_experience > baseExperience)
+function checkMinBaseExperience(pokemon, baseExperience) {
+  return pokemon.every((el) => el.base_experience > baseExperience);
   //reduce method
   // return pokemon.reduce((acc, { base_experience }) => {
   //   if(base_experience <= baseExperience){
@@ -213,8 +226,8 @@ function filterByType(pokemon, genre) {
  */
 
 const findType = (pokemon) => {
-  if(!pokemon.length) {
-    throw `Error: There are no pokemon`
+  if (!pokemon.length) {
+    throw `Error: There are no pokemon`;
   }
   //different way
   // return pokemon.map((el) =>{
@@ -228,9 +241,9 @@ const findType = (pokemon) => {
 
   //better way to solve
   return pokemon.map((el) => {
-    const slotOne = el.types.find((type) => type.slot ===1)
-    return { [el.name]: slotOne.type.name}
-  })
+    const slotOne = el.types.find((type) => type.slot === 1);
+    return { [el.name]: slotOne.type.name };
+  });
 };
 
 module.exports = {
