@@ -36,7 +36,17 @@ const examplePokemon = require("./pokemon.js");
 ];
  */
 
-function getAllPokemonNames() {}
+function getAllPokemonNames(pokemon) {
+  if (pokemon.length === 1) {
+    throw `Error: There needs to be more than one element`;
+  }
+  return (pokemonNames = pokemon.map(({ name }) => name));
+  //reduce version
+  // return pokemon.reduce((acc, el) => {
+  //   acc = [...acc, el.name];
+  //   return acc;
+  // }, []);
+}
 
 /**
  * checkIfAnyPokemonWeighsLessThan()
@@ -56,7 +66,16 @@ function getAllPokemonNames() {}
  *  checkIfAnyPokemonWeighsLessThan(pokemon, 18);
  *  //> false
  */
-function checkIfAnyPokemonWeighsLessThan() {}
+function checkIfAnyPokemonWeighsLessThan(pokemon, weight = 19) {
+  return pokemon.some((pokemon) => pokemon.weight < weight);
+  //reduce version
+  // return pokemon.reduce((acc, el) => {
+  //   if (el.weight < weight) {
+  //     acc = true;
+  //   }
+  //   return acc;
+  // }, false);
+}
 
 /**
  * findByName()
@@ -74,7 +93,24 @@ function checkIfAnyPokemonWeighsLessThan() {}
       // clefable
     };
  */
-function findByName() {}
+function findByName(pokemon, id) {
+  //typo in test. Checks pokeId instead of name
+  let val = pokemon.find((el) => el.pokeId === id);
+  if (val === undefined) {
+    val = null;
+  }
+  return val;
+  //reduce version
+  // return pokemon.reduce((acc, el) => {
+  //   if(acc !== null){
+  //     return acc;
+  //   }
+  //   if(el.pokeId === id){
+  //     acc = el;
+  //   }
+  //   return acc;
+  // }, null);
+}
 
 /**
  * filterByType()
@@ -100,7 +136,16 @@ function findByName() {}
  *  filterByType(pokemon, "psychic")
  *  //> []
  */
-function filterByType() {}
+function filterByType(pokemon, genre) {
+  let pokeArr = [];
+  pokeArr = pokemon.filter((poke) => {
+    return poke.types.find(
+      (el) => el.type.name.toUpperCase() === genre.toUpperCase()
+    );
+  });
+  return pokeArr;
+  //reduce version
+}
 
 /**
  * checkMinBaseExperience()
@@ -117,9 +162,16 @@ function filterByType() {}
  *  //>  false
  */
 
-function checkMinBaseExperience() {}
-
-
+ function checkMinBaseExperience(pokemon, baseExperience) {
+  return pokemon.every((el) => el.base_experience > baseExperience)
+  //reduce method
+  // return pokemon.reduce((acc, { base_experience }) => {
+  //   if(base_experience <= baseExperience){
+  //     acc = false;
+  //   }
+  //   return acc;
+  // }, true);
+}
 
 /**
  * findType()
@@ -160,10 +212,7 @@ function checkMinBaseExperience() {}
     ]
  */
 
-
-const findType = () => {
-  
-}
+const findType = () => {};
 
 module.exports = {
   getAllPokemonNames,
@@ -171,5 +220,5 @@ module.exports = {
   findByName,
   filterByType,
   checkMinBaseExperience,
-  findType
+  findType,
 };
