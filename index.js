@@ -40,7 +40,7 @@ function getAllPokemonNames(pokemon) {
   if (pokemon.length === 1) {
     throw `Error: There needs to be more than one element`;
   }
-  return (pokemonNames = pokemon.map(({ name }) => name));
+  return pokemon.map(({ name }) => name);
   //reduce version
   // return pokemon.reduce((acc, el) => {
   //   acc = [...acc, el.name];
@@ -212,7 +212,26 @@ function filterByType(pokemon, genre) {
     ]
  */
 
-const findType = () => {};
+const findType = (pokemon) => {
+  if(!pokemon.length) {
+    throw `Error: There are no pokemon`
+  }
+  //different way
+  // return pokemon.map((el) =>{
+  //   let val = undefined;
+  //   el.types.find((inEl) => {
+  //     val = inEl.type.name;
+  //     return val;
+  //   })
+  //   return {[el.name] : val};
+  // })
+
+  //better way to solve
+  return pokemon.map((el) => {
+    const slotOne = el.types.find((type) => type.slot ===1)
+    return { [el.name]: slotOne.type.name}
+  })
+};
 
 module.exports = {
   getAllPokemonNames,
