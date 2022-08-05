@@ -142,6 +142,7 @@ function filterByType(pokemon, genre) {
       (el) => el.type.name.toUpperCase() === genre.toUpperCase()
     );
   });
+
   //reduce version
   // return pokemon.reduce((acc, el) => {
   //   let val = el.types.reduce((acc2, el2) =>{
@@ -156,6 +157,23 @@ function filterByType(pokemon, genre) {
   //   }
   //   //console.log(`acc: `, acc)
   //   return acc
+  // }, []);
+
+  //JD's version :)
+  // return pokemon.reduce((acc, el) => {
+  //   const val = el.types.reduce((acc2, el2) => {
+  //     if (acc2 != null) return acc2;
+  //     if (el2.type.name.toUpperCase() === genre.toUpperCase()) {
+  //       acc2 = el;
+  //       return acc2;
+  //     }
+  //   }, null);
+
+  //   if (val !== undefined) {
+  //     return [...acc, val];
+  //   }
+
+  //   return acc;
   // }, []);
 }
 //console.log(filterByType(pokemon, `water`));
